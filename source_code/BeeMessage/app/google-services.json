@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "242957445285",
+    "firebase_url": "https://beemessage-6fc95.firebaseio.com",
+    "project_id": "beemessage-6fc95",
+    "storage_bucket": "beemessage-6fc95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242957445285:android:64ee80db29cde188",
+        "android_client_info": {
+          "package_name": "com.example.pchell.beemessage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242957445285-qlocmd1lksp5ud5rmgm626hfi5aledje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pchell.beemessage",
+            "certificate_hash": "9eec19bb439eaf98bfeea4c0905102e41530bb1b"
+          }
+        },
+        {
+          "client_id": "242957445285-osnsh7ae2nrdvctk60tqb72o01bei6fg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAG_AIc8r9sMcJ8ydFCGgGAK2ZTVgc8OM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242957445285-osnsh7ae2nrdvctk60tqb72o01bei6fg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
