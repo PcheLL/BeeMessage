@@ -19,3 +19,6 @@
 
 ### **GUI**
 [Mockup](https://github.com/PcheLL/BeeMessage/tree/master/GUI)
+
+### **Document**
+[Requirements Document](https://github.com/PcheLL/BeeMessage/blob/master/Document/Requirements%20Document.md)
