@@ -15,15 +15,8 @@
         android:layout_marginTop="5dp"
         android:hint="Users"
         android:textColorHint="#010101"
-        android:textSize="25dp"
-        />
-    <android.support.v7.widget.RecycleView
-        android:layout_width="370dp"
-        android:layout_height="350dp"
-        android:layout_below="@id/textViewUsers"
-        android:id="@+id/user_recycle"
-        android:layout_centerHorizontal="true"
-        />
+        android:textSize="25dp" />
+
     <ListView
         android:id="@+id/listViewName"
         android:layout_below="@id/textViewUsers"
@@ -50,6 +43,5 @@
         android:layout_centerHorizontal="true"
         android:hint="FIND"
         android:textColorHint="#010101"
-        android:textSize="16dp"
-        />
+        android:textSize="16dp"/>
 </RelativeLayout>

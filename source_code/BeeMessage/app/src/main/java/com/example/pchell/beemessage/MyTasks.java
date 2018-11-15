@@ -29,5 +29,9 @@ public class MyTasks extends AppCompatActivity {
     private EditText etNewTask;
     private Button bAdd;
 
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gui_my_tasks);
+    }
 }
 

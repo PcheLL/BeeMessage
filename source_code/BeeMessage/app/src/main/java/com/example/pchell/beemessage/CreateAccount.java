@@ -16,6 +16,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.concurrent.Future;
+
 
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -64,16 +66,15 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void registration (final String userName , String email , String password){
+    public void registration (final String userName , final String email , String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(CreateAccount.this,"Регистрация успешна",Toast.LENGTH_SHORT).show();
-                            databaseReference.push().setValue(userName);
-
-
+                            databaseReference.setValue(userName);
+                            mAuth.getCurrentUser().sendEmailVerification();
                         } else {
                             Toast.makeText(CreateAccount.this,"Регистрация провалена",Toast.LENGTH_SHORT).show();
                         }
