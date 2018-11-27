@@ -22,11 +22,11 @@
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="71dp"
         android:hint="Email:"
         android:textColorHint="#010101"
         android:textSize="18dp"
         android:layout_below="@id/textViewWelcome"
+        android:layout_alignLeft="@+id/editTextEmail"
 
         />
 
@@ -45,11 +45,12 @@
         android:id="@+id/textViewPassword"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="71dp"
         android:hint="Password:"
         android:textColorHint="#010101"
         android:textSize="18dp"
         android:layout_below="@id/editTextEmail"
+        android:layout_alignLeft="@+id/editTextPassword"
+
         />
 
     <EditText
@@ -63,18 +64,18 @@
         android:layout_marginTop="-35dp"
         android:inputType="textPassword"
         />
+
     <TextView
         android:id="@+id/textViewNewPassword"
         android:layout_width="160dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="71dp"
-        android:hint="Forgot password ?"
-        android:textColorHint="#010101"
-        android:textSize="10dp"
         android:layout_below="@id/editTextPassword"
+        android:layout_alignLeft="@+id/editTextPassword"
         android:clickable="true"
+        android:hint="Forgot password ?"
+        android:textColorHint="#0000FF"
+        android:textSize="10dp"
         />
-
     <Button
         android:id="@+id/buttonEnter"
         android:layout_width="210dp"

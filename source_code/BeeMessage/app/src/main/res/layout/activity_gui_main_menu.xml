@@ -63,5 +63,15 @@
         android:textColorHint="#010101"
         android:textSize="16dp"
         />
+    <Button
+        android:id="@+id/buttonExit"
+        android:layout_below="@id/buttonMyTasks"
+        android:layout_toRightOf="@id/editTextText"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/exit"
+        android:layout_marginTop="20dp"
+        />
 
 </RelativeLayout>

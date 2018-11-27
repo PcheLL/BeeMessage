@@ -17,12 +17,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener  {
+public class SignIn extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private EditText etEmail;
     private EditText etPassword;
-    private FirebaseAuth mAuth;
+
     private TextView textViewNewPassword;
     private Button buttonEnter;
 
@@ -30,9 +31,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gui_sign_in);
-
-        mAuth = FirebaseAuth.getInstance();
-
         etEmail = (EditText) findViewById(R.id.editTextEmail);
         etPassword = (EditText) findViewById(R.id.editTextPassword);
         //textViewNewPassword = (TextView) findViewById(R.id.textViewNewPassword).setOnClickListener(this);
@@ -42,56 +40,63 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener  {
         findViewById(R.id.textViewNewPassword).setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonEnter:
-                if (etEmail.getText().toString().equals(""))
-            {
-                Toast.makeText(SignIn.this,"Введите Email !!!",Toast.LENGTH_SHORT).show();
-            }
-            else if (etPassword.getText().toString().equals(""))
-            {
-                Toast.makeText(SignIn.this,"Введите Password !!!",Toast.LENGTH_SHORT).show();
-            }
-
-            else if(view.getId() == R.id.buttonEnter){
-                signIn(etEmail.getText().toString(),etPassword.getText().toString());
-            } break;
-            case R.id.textViewNewPassword:
-                if (etEmail.getText().toString().equals(""))
-                {
-                    Toast.makeText(SignIn.this,"Заполните поле EMAIL !!!",Toast.LENGTH_SHORT).show();
+                if (etEmail.getText().toString().equals("")) {
+                    Toast.makeText(SignIn.this, "Введите Email !!!", Toast.LENGTH_SHORT).show();
+                } else if (etPassword.getText().toString().equals("")) {
+                    Toast.makeText(SignIn.this, "Введите Password !!!", Toast.LENGTH_SHORT).show();
+                } else if (view.getId() == R.id.buttonEnter) {
+                    signIn(etEmail.getText().toString(), etPassword.getText().toString());
                 }
-                else
-                {
-                    Toast.makeText(SignIn.this,"Проверьте почту !!!",Toast.LENGTH_SHORT).show();
-                mAuth.sendPasswordResetEmail(etEmail.getText().toString());
-                }break;
+                break;
+            case R.id.textViewNewPassword:
+                if (etEmail.getText().toString().equals("")) {
+                    Toast.makeText(SignIn.this, "Заполните поле EMAIL !!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignIn.this, "Проверьте почту !!!", Toast.LENGTH_SHORT).show();
+                    //-----Отправка сообщения о смене пароля
+                    mAuth.sendPasswordResetEmail(etEmail.getText().toString());
+                }
+                break;
         }
     }
 
-    public void signIn (String email_S , String password_S){
+    //-----Проверка авторизации
+    public void signIn(String email_S, String password_S) {
         mAuth.signInWithEmailAndPassword(email_S, password_S)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            if (user.isEmailVerified() == true){
-                            Toast.makeText(SignIn.this,"Авторизация успешна",Toast.LENGTH_SHORT).show();
-                            Intent intent_Main_Menu = new Intent(SignIn.this,MainMenu.class);
-                            startActivity(intent_Main_Menu);
+                            if (user.isEmailVerified() == true) {
+                                Toast.makeText(SignIn.this, "Авторизация успешна", Toast.LENGTH_SHORT).show();
+                                Intent intent_Main_Menu = new Intent(SignIn.this, MainMenu.class);
+                                startActivity(intent_Main_Menu);
                             }
-                                if (user.isEmailVerified() == false){
-                                    Toast.makeText(SignIn.this,"Нет подтверждения",Toast.LENGTH_SHORT).show();
-                                }
-
+                            //-----Проверка подтверждения аккаунта (почта Gmail)
+                            if (user.isEmailVerified() == false) {
+                                Toast.makeText(SignIn.this, "Нет подтверждения", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(SignIn.this,"Авторизация провалена",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this, "Авторизация провалена", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
     }
-
 }
+    /* public void Ref(){
+       if (user.isEmailVerified() == true){
+            Toast.makeText(SignIn.this,"Авторизация успешна",Toast.LENGTH_SHORT).show();
+            Intent intent_Main_Menu = new Intent(SignIn.this,MainMenu.class);
+            startActivity(intent_Main_Menu);
+        }
+        //-----Проверка подтверждения аккаунта (почта Gmail)
+        if (user.isEmailVerified() == false){
+            Toast.makeText(SignIn.this,"Нет подтверждения",Toast.LENGTH_SHORT).show();
+        }
+    }*/

@@ -23,19 +23,17 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = database.getReference("Users");
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText etEmail;
     private EditText etPassword;
     private EditText etUserName;
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    //private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gui_create_account);
-
         mAuth = FirebaseAuth.getInstance();
-
         etEmail = (EditText) findViewById(R.id.editTextEmail);
         etPassword = (EditText) findViewById(R.id.editTextPassword);
         etUserName = (EditText) findViewById(R.id.editTextName);
@@ -55,7 +53,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         }
         else if (etUserName.getText().toString().equals(""))
         {
-            Toast.makeText(CreateAccount.this,"Введите First &     last name!!!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateAccount.this,"Введите First & last name!!!",Toast.LENGTH_SHORT).show();
         }
 
          else if(view.getId() == R.id.buttonSave){
@@ -65,7 +63,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
             registration(displayName,email,password);
         }
     }
-
+    //-----Регистрация в базе данных нового пользователя
     public void registration (final String userName , final String email , String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -73,7 +71,9 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(CreateAccount.this,"Регистрация успешна",Toast.LENGTH_SHORT).show();
-                            databaseReference.setValue(userName);
+                            String userKey = mAuth.getCurrentUser().getUid(); //получение личного ключа пользователя
+                            databaseReference.child(userKey).setValue(userName);
+                            //-----Отправка сообщения на Gmail о регистрации
                             mAuth.getCurrentUser().sendEmailVerification();
                         } else {
                             Toast.makeText(CreateAccount.this,"Регистрация провалена",Toast.LENGTH_SHORT).show();
