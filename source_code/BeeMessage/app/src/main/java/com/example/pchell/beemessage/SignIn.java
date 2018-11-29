@@ -89,14 +89,3 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                 });
     }
 }
-    /* public void Ref(){
-       if (user.isEmailVerified() == true){
-            Toast.makeText(SignIn.this,"Авторизация успешна",Toast.LENGTH_SHORT).show();
-            Intent intent_Main_Menu = new Intent(SignIn.this,MainMenu.class);
-            startActivity(intent_Main_Menu);
-        }
-        //-----Проверка подтверждения аккаунта (почта Gmail)
-        if (user.isEmailVerified() == false){
-            Toast.makeText(SignIn.this,"Нет подтверждения",Toast.LENGTH_SHORT).show();
-        }
-    }*/

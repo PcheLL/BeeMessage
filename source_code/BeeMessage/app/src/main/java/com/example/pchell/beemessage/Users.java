@@ -46,9 +46,10 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
     private String userKey;
     private String findName;
     private String findKey;
-
-    Intent intent_UserTasks1;
-    Intent intent_UserTasks2;
+    private String userName;
+    private String nameAtPosition;
+    private Intent intent_UserTasks1;
+    private Intent intent_UserTasks2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,6 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         bFind = (Button) findViewById(R.id.buttonFind);
         findViewById(R.id.buttonFind).setOnClickListener(this);
         userKey = mAuth.getCurrentUser().getUid();
-
 
 
         //-----Отображение в базе данных зарег. пользователей
@@ -81,14 +81,15 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+        //-----Переход к задачам пользователя
         lvName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String nameAtPosition = (String) parent.getItemAtPosition(position);
+                nameAtPosition = (String) parent.getItemAtPosition(position);
                 UserTasks userTasks = new UserTasks();
                 find(nameAtPosition);
-                    intent_UserTasks1 = new Intent(Users.this,MyTasks.class);
-                    intent_UserTasks2 = new Intent(Users.this,UserTasks.class);
+                intent_UserTasks1 = new Intent(Users.this, MyTasks.class);
+                intent_UserTasks2 = new Intent(Users.this, UserTasks.class);
             }
         });
 
@@ -96,12 +97,18 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-     //   find();
-
+        userName = etNameFind.getText().toString();
+        if (userName.equals("")) {
+            Toast.makeText(Users.this, "Введите имя пользователя !!!", Toast.LENGTH_SHORT).show();
+        } else {
+            nameAtPosition = userName;
+            find(nameAtPosition);
+            intent_UserTasks1 = new Intent(Users.this, MyTasks.class); //объявление интента для нового активити
+            intent_UserTasks2 = new Intent(Users.this, UserTasks.class);
+        }
 
     }
 
-    ///////////////////////////////////////
     public void find(final String nameAtPosition) {
         //-----Выбор пользователя
         myRef.addValueEventListener(new ValueEventListener() {
@@ -109,16 +116,13 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot findUsersDS) {
                 final List<String> findUsersList = new ArrayList<String>();
                 for (DataSnapshot battle : findUsersDS.getChildren()) {
-                    findName =  (String) battle.getValue();
-                    if ( findName == nameAtPosition)
-                    {
+                    findName = (String) battle.getValue();
+                    if (findName.equals(nameAtPosition)) {
                         findKey = battle.getKey();
 
-                        if (userKey.equals(findKey))
-                        {
+                        if (userKey.equals(findKey)) {
                             startActivity(intent_UserTasks1);
-                        }
-                        else {
+                        } else {
                             UserTasks userTasks = new UserTasks();
                             userTasks.tasks(findKey);
                             startActivity(intent_UserTasks2);
@@ -126,6 +130,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".UserTasks">
 
     <TextView
@@ -23,8 +25,10 @@
         android:layout_below="@id/textViewUserTasks"
         android:layout_centerHorizontal="true"
         android:layout_width="370dp"
-        android:layout_height="350dp">
-    </ListView>
+        android:layout_height="400dp"
+        android:listSelector="@android:color/transparent"
+        />
+
 
     <EditText
         android:id="@+id/editTextNewUserTask"

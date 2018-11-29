@@ -13,8 +13,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MyPhone extends AppCompatActivity implements View.OnClickListener {
     private Button bSignIn;
     private Button bCreateAcc;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
-   // private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,8 @@ public class MyPhone extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_gui__my_phone);
 
         FirebaseUser user = mAuth.getInstance().getCurrentUser();
-        if(user!=null){
-            Intent intent = new Intent(MyPhone.this,MainMenu.class);
+        if (user != null) {
+            Intent intent = new Intent(MyPhone.this, MainMenu.class);
             startActivity(intent);
         }
 
@@ -34,14 +34,17 @@ public class MyPhone extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View view) {
-        Intent intent_CreateAcc = new Intent(this,CreateAccount.class);
-        Intent intent_SignIn = new Intent(this,SignIn.class);
+        Intent intent_CreateAcc = new Intent(this, CreateAccount.class);
+        Intent intent_SignIn = new Intent(this, SignIn.class);
         switch (view.getId()) {
-            case R.id.buttonCreateAccount: startActivity(intent_CreateAcc); break;
-            case R.id.buttonSignIn: startActivity(intent_SignIn); break;
+            case R.id.buttonCreateAccount:
+                startActivity(intent_CreateAcc);
+                break;
+            case R.id.buttonSignIn:
+                startActivity(intent_SignIn);
+                break;
         }
     }
 }

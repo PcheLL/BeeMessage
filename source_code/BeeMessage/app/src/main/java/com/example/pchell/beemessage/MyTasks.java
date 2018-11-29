@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyTasks extends AppCompatActivity implements View.OnClickListener{
+public class MyTasks extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser user = mAuth.getInstance().getCurrentUser();
     private EditText etNewTask;
@@ -59,9 +59,8 @@ public class MyTasks extends AppCompatActivity implements View.OnClickListener{
                     public void onDataChange(@NonNull DataSnapshot findUsersDS) {
                         final List<String> findUsersList = new ArrayList<String>();
                         for (DataSnapshot battle : findUsersDS.getChildren()) {
-                            findValue =  (String) battle.getValue();
-                            if ( findValue == nameAtPosition)
-                            {
+                            findValue = (String) battle.getValue();
+                            if (findValue == nameAtPosition) {
                                 //-----Поиск значения в БД  и удаление его
                                 findValueKey = battle.getKey();
                                 myRef = database.getReference("Tasks/" + userKey + "/" + findValueKey);
@@ -70,6 +69,7 @@ public class MyTasks extends AppCompatActivity implements View.OnClickListener{
                             }
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
@@ -81,22 +81,26 @@ public class MyTasks extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        String newTask = etNewTask.getText().toString();
-        String userKey = user.getUid();
-        add();
+        userTask = etNewTask.getText().toString();
+        if (userTask.equals("")) {
+            Toast.makeText(MyTasks.this, "Введите задачу !!!", Toast.LENGTH_SHORT).show();
+        } else {
+            String userKey = user.getUid();
+            myRef = database.getReference("Tasks/" + userKey);
+            myRef.push().setValue(userTask);
+            etNewTask.setText("");
+            tasksListRefresh();
+        }
+
     }
     //-----Добавление новой задачи
-    public void add(){
-        userTask = etNewTask.getText().toString();
-        myRef = database.getReference("Tasks/"+ userKey);
-        myRef.push().setValue(userTask);
-        etNewTask.setText("");
-        tasksListRefresh();
-        }
-    public void delete(){}
+
+    public void delete() {
+    }
+
     private void tasksListRefresh() {
         //-----Отображение в базе данных задач
-        myRef = database.getReference("Tasks/"+ userKey);
+        myRef = database.getReference("Tasks/" + userKey);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot tasksDS) {

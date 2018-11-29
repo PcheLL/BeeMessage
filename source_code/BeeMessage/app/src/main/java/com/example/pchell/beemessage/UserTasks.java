@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,16 +44,20 @@ public class UserTasks extends AppCompatActivity implements View.OnClickListener
         refreshTaskList();
     }
     //-----Запись задачи пользователю
-    public void add() {
-        userTask = etUserTask.getText().toString();
-        myRef.push().setValue(userTask);
-        etUserTask.setText("");
-        refreshTaskList();
-    }
+
 
     @Override
     public void onClick(View v) {
-        add();
+        userTask = etUserTask.getText().toString();
+
+        if (userTask.equals("")) {
+
+            Toast.makeText(UserTasks.this, "Введите задачу !!!", Toast.LENGTH_SHORT).show();
+        } else {
+            myRef.push().setValue(userTask);
+            etUserTask.setText("");
+            refreshTaskList();
+        }
     }
 
     public void tasks(String userKey) {

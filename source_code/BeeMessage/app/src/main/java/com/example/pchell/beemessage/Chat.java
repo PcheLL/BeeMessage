@@ -92,42 +92,44 @@ public class Chat extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent_UsersO = new Intent(this,UsersOnline.class);
+        Intent intent_UsersO = new Intent(this, UsersOnline.class);
         switch (view.getId()) {
-            case R.id.buttonUserOnline: startActivity(intent_UsersO); break;
-            case R.id.buttonSend: msg = etText.getText().toString();
-            if (msg.equals(""))
-            {
-                Toast.makeText(Chat.this,"Введите текст сообщения !!!",Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(Chat.this,"Отправлено !!!",Toast.LENGTH_SHORT).show();
-                etText.setText("");
-                userKey = mAuth.getCurrentUser().getUid();
-                //-----Получаем имя из списка Users по KEY (личному)
-                myRefUsers.child(userKey).addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                autor = (String) dataSnapshot.getValue();
-                                send_msg();
-                            }
+            case R.id.buttonUserOnline:
+                startActivity(intent_UsersO);
+                break;
+            case R.id.buttonSend:
+                msg = etText.getText().toString();
+                if (msg.equals("")) {
+                    Toast.makeText(Chat.this, "Введите текст сообщения !!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Chat.this, "Отправлено !!!", Toast.LENGTH_SHORT).show();
+                    etText.setText("");
+                    userKey = mAuth.getCurrentUser().getUid();
+                    //-----Получаем имя из списка Users по KEY (личному)
+                    myRefUsers.child(userKey).addListenerForSingleValueEvent(
+                            new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    autor = (String) dataSnapshot.getValue();
+                                    send_msg();
+                                }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                // Getting Post failed, log a message
-                            }
-                        });
-            }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    // Getting Post failed, log a message
+                                }
+                            });
+                }
         }
     }
+
     //-----Отправка сообщения в базу данных
-    public void send_msg(){
+    public void send_msg() {
         //----- Установка времени и даты отправки сообщения
         DateFormat df = new SimpleDateFormat(" HH:mm (dd.MM.yyyy)");
         timeMessage = df.format(Calendar.getInstance().getTime());
         String autorTime = (autor + "      " + timeMessage + System.lineSeparator());
-        myRefMessage.push().setValue(autorTime+msg);
+        myRefMessage.push().setValue(autorTime + msg);
         chatListRefresh();
 
     }

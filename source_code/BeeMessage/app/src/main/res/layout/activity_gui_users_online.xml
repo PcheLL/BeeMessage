@@ -17,13 +17,14 @@
         android:textSize="25dp"
         />
     <ListView
-        android:id="@+id/listViewName"
+        android:id="@+id/listViewUserOnline"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/textViewUsersOnline"
         android:layout_centerHorizontal="true"
-        android:layout_width="370dp"
-        android:layout_height="5000dp">
-    </ListView>
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:listSelector="@android:color/transparent"
+        />
 
 </RelativeLayout>
