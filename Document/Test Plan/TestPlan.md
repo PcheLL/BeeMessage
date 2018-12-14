@@ -1,12 +1,12 @@
 # **Test plan**
 ### **Содержание**
-- [Введение](https://github.com/PcheLL/BeeMessage/new/master/Document#введение)
-- [Объекты тестирования](https://github.com/PcheLL/BeeMessage/new/master/Document/Test Plan#объекты-тестирования)
-- [Риски](https://github.com/PcheLL/BeeMessage/new/master/Document#риски)
-- [Особенности тестирования](https://github.com/PcheLL/BeeMessage/new/master/Document#особенности-тестирования)
-- [Подход к тестированию](https://github.com/PcheLL/BeeMessage/new/master/Document#подход-к-тестированию)
-- [Критерии прохождения/провала теста](https://github.com/PcheLL/BeeMessage/new/master/Document#критерии-прохожденияпровала-теста)
-- [Заключение](https://github.com/PcheLL/BeeMessage/new/master/Document#заключение)
+- [Введение](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#введение)
+- [Объекты тестирования](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#объекты-тестирования)
+- [Риски](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#риски)
+- [Особенности тестирования](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#особенности-тестирования)
+- [Подход к тестированию](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#подход-к-тестированию)
+- [Критерии прохождения/провала теста](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#критерии-прохожденияпровала-теста)
+- [Заключение](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md#заключение)
 
 ## **Введение**
 Этот документ предназначен для тестирования мобильного приложения **«BeeMessage»**.
@@ -46,7 +46,7 @@
 Для проверки утечки памяти будет использован Android Monitor.
 ## **Критерии прохождения/провала теста**
 
-[Test Result](https://github.com/PcheLL/BeeMessage/new/master/Document#заключение)
+[Test Result](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestResult.md)
 
 ## **Заключение**
 
