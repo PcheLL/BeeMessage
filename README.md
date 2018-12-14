@@ -22,3 +22,14 @@
 
 ### **Document**
 [Requirements Document](https://github.com/PcheLL/BeeMessage/blob/master/Document/Requirements%20Document.md)
+
+#### **Test plan**
+[Test Plan](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestPlan.md)
+
+[Test Result](https://github.com/PcheLL/BeeMessage/blob/master/Document/Test%20Plan/TestResult.md)
+
+### **Source code**
+
+[Code](https://github.com/PcheLL/BeeMessage/tree/master/source_code/BeeMessage/app/src/main/java/com/example/pchell/beemessage)
+
+[Resources](https://github.com/PcheLL/BeeMessage/tree/master/source_code/BeeMessage/app/src/main/res)
